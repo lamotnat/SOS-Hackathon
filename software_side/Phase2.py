@@ -40,7 +40,8 @@ def image_to_json():
     sequence = sequence.replace(processor.tokenizer.eos_token, "").replace(
         processor.tokenizer.pad_token, ""
     )
-    print(sequence)
+    
+    return sequence
 
 
 def json_to_string(s):
