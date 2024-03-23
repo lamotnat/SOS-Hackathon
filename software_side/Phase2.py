@@ -50,5 +50,6 @@ def donut():
     sequence = sequence.replace(processor.tokenizer.eos_token, "").replace(processor.tokenizer.pad_token, "")
     sequence = re.sub(r"<.*?>", "", sequence, count=1).strip()  # remove first task start token
     
+    sequence = processor.token2json(sequence)
     print(processor.token2json(sequence))
 
