@@ -23,7 +23,7 @@ def string_to_wav(text):
 
 def play_wav():
     # open the wav file
-    wav_file = wave.open(sys.argv[1], "speech.wav")
+    wav_file = wave.open("speech.wav", 'rb')
     pyaudio_obj = pyaudio.PyAudio()
 
     # open stream based on wav file
