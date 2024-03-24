@@ -1,9 +1,6 @@
-from transformers import pipeline
 import torch
-import re
-from transformers import TrOCRProcessor, VisionEncoderDecoderModel, DonutProcessor
+from transformers import VisionEncoderDecoderModel, DonutProcessor
 from PIL import Image
-from datasets import load_dataset
 
 
 def image_to_json(image: Image) -> str:
