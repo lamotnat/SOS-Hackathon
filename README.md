@@ -3,7 +3,7 @@ Mini-2MP-Plus. We used ArduCAM_Host_V2 for our image capturing; however, the
 directory being looked at can be changed and the image itself can come from 
 any source. Please ensure that the folder is empty as the program waits for 
 an image to be saved into the folder. To change the directory, look in
-./hardware_side/Phase0.py and replace "<SPECIFY FILE PATH>".
+./hardware_side/Phase0.py and replace `"<SPECIFY FILE PATH>"`.
 
 For our AI models, we used these three:
 - https://huggingface.co/google/vit-base-patch16-224 
