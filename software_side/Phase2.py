@@ -6,16 +6,12 @@ from PIL import Image
 from datasets import load_dataset
 
 
-def image_to_json():
+def image_to_json(image: Image) -> str:
+    #setup system
     processor = DonutProcessor.from_pretrained("jinhybr/OCR-Donut-CORD")
     model = VisionEncoderDecoderModel.from_pretrained("jinhybr/OCR-Donut-CORD")
-
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model.to(device)
-    # load document image
-    # dataset = load_dataset("D:/vscoderepos/make2024/SOS-Hackathon/software_side/imagefolder", split="test")
-    # image = dataset[1]["image"]
-    image = Image.open("txt.jpg").convert("RGB")
 
     # prepare decoder inputs
     task_prompt = "<s_rvlcdip>"
@@ -25,6 +21,7 @@ def image_to_json():
 
     pixel_values = processor(image, return_tensors="pt").pixel_values
 
+    #run the model
     outputs = model.generate(
         pixel_values.to(device),
         decoder_input_ids=decoder_input_ids.to(device),
@@ -36,6 +33,7 @@ def image_to_json():
         return_dict_in_generate=True,
     )
 
+    #clean output some
     sequence = processor.batch_decode(outputs.sequences)[0]
     sequence = sequence.replace(processor.tokenizer.eos_token, "").replace(
         processor.tokenizer.pad_token, ""
