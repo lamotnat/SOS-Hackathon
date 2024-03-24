@@ -1,6 +1,8 @@
 import software_side.Phase1, software_side.Phase2, software_side.Phase3
 import hardware_side.Phase0
-from PIL import Image
+from PIL import Image, ImageFile
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 filepath = hardware_side.Phase0.retrieve_image()
 
