@@ -4,7 +4,7 @@ from PIL import Image
 
 
 def image_to_json(image: Image) -> str:
-    #setup system
+    # setup system
     processor = DonutProcessor.from_pretrained("jinhybr/OCR-Donut-CORD")
     model = VisionEncoderDecoderModel.from_pretrained("jinhybr/OCR-Donut-CORD")
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -18,7 +18,7 @@ def image_to_json(image: Image) -> str:
 
     pixel_values = processor(image, return_tensors="pt").pixel_values
 
-    #run the model
+    # run the model
     outputs = model.generate(
         pixel_values.to(device),
         decoder_input_ids=decoder_input_ids.to(device),
@@ -30,12 +30,12 @@ def image_to_json(image: Image) -> str:
         return_dict_in_generate=True,
     )
 
-    #clean output some
+    # clean output some
     sequence = processor.batch_decode(outputs.sequences)[0]
     sequence = sequence.replace(processor.tokenizer.eos_token, "").replace(
         processor.tokenizer.pad_token, ""
     )
-    
+
     return sequence
 
 
@@ -57,7 +57,7 @@ def json_to_string(s):
             continue
 
         if word in words:
-            break
+            continue
 
         words.append(word)
 
