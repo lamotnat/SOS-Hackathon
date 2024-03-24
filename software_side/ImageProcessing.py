@@ -10,3 +10,4 @@ if Phase1.is_street_sign(image):
     clean_text = Phase2.json_to_string(raw_text)
 
     Phase3.string_to_wav(clean_text)
+    Phase3.play_wav()
