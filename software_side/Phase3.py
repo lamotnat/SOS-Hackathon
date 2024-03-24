@@ -4,7 +4,6 @@ from datasets import load_dataset
 import soundfile as sf
 import pyaudio
 import wave
-import sys
 
 
 def string_to_wav(text):
